@@ -1,3 +1,4 @@
+// Middleware d'authentification afin de sécuriser les routes
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {

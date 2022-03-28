@@ -5,10 +5,13 @@ const saucesCtrl = require('../controllers/sauces');
 const auth = require('../middleware/auth');
 const multer = require('../middleware/multer-config');
 
-router.post('/', multer, saucesCtrl.createSauce);    // Récupère les middleware auth, multer '/backend/middleware/auth', '/backend/middleware/multer-config' et controller createThing dans '/backend/controllers/stuff' //
-router.put('/:id', multer, saucesCtrl.modifySauce);  // Récupère les middleware auth, multer '/backend/middleware/auth', '/backend/middleware/multer-config' et controller modifyThing dans '/backend/controllers/stuff' //
-router.delete('/:id', saucesCtrl.deleteSauce);       // Récupère le middleware auth dans '/backend/controllers/auth' et le controller deleteThing  dans '/backend/controllers/stuff' //
-router.get('/:id', saucesCtrl.getOneSauce);          // Récupère le middleware auth dans '/backend/controllers/auth' et le controller getOneThing  dans '/backend/controllers/stuff' //
-router.get('/', saucesCtrl.getAllSauces);            // Récupère le middleware auth dans '/backend/controllers/auth' et le controller getAllThings dans '/backend/controllers/stuff' //
+                                                                                             // middleware multer '/backend/middleware/multer-config' // 
+                                                                                             // middleware auth   '/backend/middleware/auth'          //
+router.post('/', auth, multer, saucesCtrl.createSauce);    // Créer une sauce                // controller createThing  '/backend/controllers/sauces' //
+router.put('/:id', auth, multer, saucesCtrl.modifySauce);  // Modifier une sauce             // controller modifyThing  '/backend/controllers/sauces' //
+router.delete('/:id', auth, saucesCtrl.deleteSauce);       // Supprimer une sauce            // controller deleteThing  '/backend/controllers/sauces' //
+router.get('/:id', auth, saucesCtrl.getOneSauce);          // Récupèrer une sauce ciblée     // controller getOneThing  '/backend/controllers/sauces' //
+router.get('/', auth, saucesCtrl.getAllSauces);            // Récupèrer toutes les sauces    // controller getAllThings '/backend/controllers/sauces' //
+router.post('/:id/like', auth, saucesCtrl.likeSauce);      // Actualiser le statut like      // controller likeSauce    '/backend/controllers/sauces' //
 
 module.exports = router;

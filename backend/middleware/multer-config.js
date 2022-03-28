@@ -1,4 +1,4 @@
-//Package permettant de capturer les fichiers envoyés avec une requête HTTP //
+// Middleware de traitement de fichier image
 const multer = require('multer');
 
 // Permet de générer l'extension du fichier //
