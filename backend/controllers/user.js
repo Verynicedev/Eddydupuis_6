@@ -3,10 +3,29 @@ const bcrypt = require('bcrypt');
 // Package qui permet la création d'un token aléatoire //
 const jwt = require('jsonwebtoken');
 
+const passwordValidator = require('password-validator');
+
 const User = require('../models/User');
+
+const passwordSchema = new passwordValidator();
+
+passwordSchema
+.is().min(10)                                   // Minimum length 10
+.has().uppercase()                              // Must have uppercase letters
+.has().lowercase()                              // Must have lowercase letters
+.has().digits()                                 // Must have digits
+.has().not().spaces()                           // Should not have spaces
+.has().symbols();                               // Must have symbols
+
 
 // Enregistrement d'un nouvel utilisateur //
 exports.signup = (req, res, next) =>  {
+    if (!passwordSchema.validate(req.body.password)) {
+        return res.status(401).json({
+          message:
+            "Le mot de passe doit avoir 10 caractères minimum et contenir 1 chiffre, 1 minuscule, 1 majuscule, un symbole et aucun espace !",
+        });
+      }    
     // Crypte le MDP //
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
