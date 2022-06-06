@@ -54,7 +54,8 @@ MONGO_ENV = "mongodb+srv://INFO_DE_CONNEXION@cluster0.dmrqb.mongodb.net/Cluster0
 Dans ce même fichier 
 Mettre ce code ci dessous et remplacer CODE TOKEN_SECRET par le token de votre choix
 
-TOKEN_SECRET = "CODE TOKEN_SECRET"```
+TOKEN_SECRET = "CODE TOKEN_SECRET"
+```
 
 ### 3. Lancer le projet
 
