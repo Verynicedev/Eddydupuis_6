@@ -7,8 +7,10 @@ const path = require('path');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
+require('dotenv').config();
+
 // Liaison de l'API vers le cluster MongoDB //
-mongoose.connect('mongodb+srv://admin1:123@cluster0.dmrqb.mongodb.net/Cluster0?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_ENV,
 { useNewUrlParser: true,
   useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
